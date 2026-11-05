@@ -12,16 +12,12 @@ We read about 880 public SEO skills from 40 repos. Most of them were long checkl
 | [refresh-sprint](skills/refresh-sprint) | You refresh pages that already rank. Every heading must come from content the page already has. | RyanCraggs/claude-seo-skills |
 | [link-building](skills/link-building) | You want backlinks. It first checks if links are the real problem. | coreyhaines31/marketingskills |
 | [entity-seo](skills/entity-seo) | Google or AI answers do not connect your name, company and products. | saadsalmankhan/entity-seo-skill |
-| gsc-analysis | You read Search Console data and want the numbers to be right. | [younesbenallal/seo-skills](https://github.com/younesbenallal/seo-skills/tree/main/gsc-analysis) (install from there) |
-| technical-audit | You want a technical audit that keeps only checks that move rankings. | [younesbenallal/seo-skills](https://github.com/younesbenallal/seo-skills/tree/main/technical-audit) (install from there) |
+| gsc-analysis | You read Search Console data and want the numbers to be right. | [younesbenallal/seo-skills](https://github.com/younesbenallal/seo-skills/tree/main/gsc-analysis) (placeholder, installs on first use) |
+| technical-audit | You want a technical audit that keeps only checks that move rankings. | [younesbenallal/seo-skills](https://github.com/younesbenallal/seo-skills/tree/main/technical-audit) (placeholder, installs on first use) |
 
-The last two have no license, so we cannot copy them here. Step 2 below installs them from the author's repo.
+The last two have no license, so we cannot copy them here. This repo ships a small placeholder for each that downloads the real skill on first use.
 
 ## Install
-
-There are two steps, because 4 skills live here and 2 live in the original author's repo.
-
-**Step 1: the 4 skills in this repo**
 
 ```bash
 npx skills add marekreyo/seo-skills
@@ -34,16 +30,21 @@ git clone https://github.com/marekreyo/seo-skills
 cp -R seo-skills/skills/* ~/.claude/skills/
 ```
 
-**Step 2: gsc-analysis and technical-audit**
+Restart Claude Code after you install. Type `/` and the skill names show in the list.
 
-These two read a shared file (`docs/credentials-and-tooling.md`) from their own repo, so clone the whole repo and copy the two folders with it:
+### The two linked skills install on first use
+
+`gsc-analysis` and `technical-audit` come in as small placeholders. The first time you ask a Search Console or audit question, Claude asks if it may download the real skill from github.com/younesbenallal/seo-skills. Say yes, restart Claude Code, and ask again. The placeholder is replaced by the real skill.
+
+To install them up front instead:
 
 ```bash
-git clone https://github.com/younesbenallal/seo-skills younes-seo-skills
+git clone --depth 1 https://github.com/younesbenallal/seo-skills younes-seo-skills
 cp -R younes-seo-skills/gsc-analysis younes-seo-skills/technical-audit younes-seo-skills/docs ~/.claude/skills/
+rm -rf younes-seo-skills
 ```
 
-Restart Claude Code after you install. Type `/` and the skill names show in the list.
+The `docs` folder is needed: both skills read a shared file from it.
 
 ## Use them
 
