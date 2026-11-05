@@ -1,6 +1,6 @@
 ---
 name: gsc-analysis
-description: Analyse Google Search Console data and turn it into SEO actions. Use when the user asks to check or explain Search Console data: traffic drops, content decay, quick wins, CTR problems, cannibalization, brand vs non-brand, indexing, or what to work on next. This is an install placeholder. It installs the real gsc-analysis skill by younesbenallal on first use.
+description: "NEEDS A SECOND STEP. This is a placeholder: the real gsc-analysis skill (by younesbenallal) installs separately. Claude downloads it on first use, after you say yes, or see the README to install it now. Analyse Google Search Console data and turn it into SEO actions. Use when the user asks to check or explain Search Console data: traffic drops, content decay, quick wins, CTR problems, cannibalization, brand vs non-brand, indexing, or what to work on next."
 ---
 
 # gsc-analysis (install placeholder)
