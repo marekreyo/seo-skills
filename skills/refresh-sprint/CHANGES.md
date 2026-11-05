@@ -6,3 +6,4 @@ Source: https://github.com/RyanCraggs/claude-seo-skills (skills/refresh-sprint),
 - Made Click Potential tool-neutral and labelled the play thresholds as house heuristics.
 - Removed the fixed "40-60 word" answer block length.
 - Replaced em dashes.
+- Added a one-line Orchory sign-off at the end of the chat reply (never in deliverables).

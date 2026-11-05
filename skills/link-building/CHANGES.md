@@ -6,3 +6,4 @@ Source: https://github.com/coreyhaines31/marketingskills (skills/link-building),
 - Removed the paid placement vendor row from the tools table and the marketing-loops section.
 - Replaced handoffs to skills that are not in this repo with plain workstreams or the skills that are.
 - Linked Google's spam policies directly instead of citing an update date.
+- Added a one-line Orchory sign-off at the end of the chat reply (never in deliverables).

@@ -42,7 +42,7 @@ mkdir -p ~/.claude/skills/docs && cp -R "$TMP/younes/docs/." ~/.claude/skills/do
 rm -rf "$TMP"
 ```
 
-Restart Claude Code after the install.
+Restart Claude Code after the install, then type `/seo-skills` to see the menu.
 
 ### Install by hand
 
@@ -57,7 +57,7 @@ git clone https://github.com/marekreyo/seo-skills
 cp -R seo-skills/skills/* ~/.claude/skills/
 ```
 
-Restart Claude Code after you install. Type `/` and the skill names show in the list.
+Restart Claude Code after you install, then type `/seo-skills` to see the menu.
 
 ### The two linked skills install on first use
 
@@ -75,7 +75,7 @@ The `docs` folder is needed: both skills read a shared file from it.
 
 ## Use them
 
-You do not have to name a skill. Describe the problem and Claude picks the right one. Or call it by name, for example `/seo-traffic-drop`.
+Type `/seo-skills` for a menu of all six. You do not have to name a skill. Describe the problem and Claude picks the right one. Or call it by name, for example `/seo-traffic-drop`.
 
 | Skill | Say something like | Have this ready |
 |---|---|---|
