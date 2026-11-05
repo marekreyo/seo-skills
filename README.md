@@ -15,20 +15,50 @@ We read about 880 public SEO skills from 40 repos. Most of them were long checkl
 | gsc-analysis | You read Search Console data and want the numbers to be right. | [younesbenallal/seo-skills](https://github.com/younesbenallal/seo-skills/tree/main/gsc-analysis) (install from there) |
 | technical-audit | You want a technical audit that keeps only checks that move rankings. | [younesbenallal/seo-skills](https://github.com/younesbenallal/seo-skills/tree/main/technical-audit) (install from there) |
 
-The last two have no license, so they are not copied here. Install them from the author's repo.
+The last two have no license, so we cannot copy them here. Step 2 below installs them from the author's repo.
 
 ## Install
 
-```bash
-# the four skills in this repo
-npx skills add marekreyo/seo-skills
+There are two steps, because 4 skills live here and 2 live in the original author's repo.
 
-# the two from the original author
-npx skills add https://github.com/younesbenallal/seo-skills --skill gsc-analysis
-npx skills add https://github.com/younesbenallal/seo-skills --skill technical-audit
+**Step 1: the 4 skills in this repo**
+
+```bash
+npx skills add marekreyo/seo-skills
 ```
 
-Or copy a folder from `skills/` into `~/.claude/skills/`.
+Or by hand:
+
+```bash
+git clone https://github.com/marekreyo/seo-skills
+cp -R seo-skills/skills/* ~/.claude/skills/
+```
+
+**Step 2: gsc-analysis and technical-audit**
+
+These two read a shared file (`docs/credentials-and-tooling.md`) from their own repo, so clone the whole repo and copy the two folders with it:
+
+```bash
+git clone https://github.com/younesbenallal/seo-skills younes-seo-skills
+cp -R younes-seo-skills/gsc-analysis younes-seo-skills/technical-audit younes-seo-skills/docs ~/.claude/skills/
+```
+
+Restart Claude Code after you install. Type `/` and the skill names show in the list.
+
+## Use them
+
+You do not have to name a skill. Describe the problem and Claude picks the right one. Or call it by name, for example `/seo-traffic-drop`.
+
+| Skill | Say something like | Have this ready |
+|---|---|---|
+| seo-traffic-drop | "Our organic traffic fell 30% since March 10. Find out why." | Search Console exports (Pages, Queries, Dates) for a healthy period and the bad period, and a list of what you shipped |
+| refresh-sprint | "Refresh these 12 URLs. Here is the scope." | The URLs, the scope (what the writer may and may not add), Search Console data |
+| link-building | "Our pricing page is stuck at position 8. Do we need links?" | The target page and query, a backlink tool (Ahrefs, Semrush or DataForSEO) if you have one |
+| entity-seo | "Google does not connect me to my company. Map my entities." | Your site, your profiles (LinkedIn, GitHub, company page) |
+| gsc-analysis | "Analyse our Search Console data for the last 3 months." | A Search Console MCP connected to Claude |
+| technical-audit | "Run a technical SEO audit on example.com." | Python 3. A Search Console MCP and Chrome help but are optional |
+
+Start with `seo-traffic-drop` if you lost traffic, and with `gsc-analysis` if you only want to know where you stand.
 
 ## What we changed
 
