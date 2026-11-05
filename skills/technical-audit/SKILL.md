@@ -1,6 +1,6 @@
 ---
 name: technical-audit
-description: Run a technical SEO audit of a website that keeps only checks that move results: crawl and index access, AI crawler access, canonicals, JavaScript rendering, cannibalization, internal links, speed, schema. Use when the user asks for a technical audit, a tech SEO check, a site health check, or why a site is not indexed or not cited by AI answers. This is an install placeholder. It installs the real technical-audit skill by younesbenallal on first use.
+description: "NEEDS A SECOND STEP. This is a placeholder: the real technical-audit skill (by younesbenallal) installs separately. Claude downloads it on first use, after you say yes, or see the README to install it now. Run a technical SEO audit of a website that keeps only checks that move results: crawl and index access, AI crawler access, canonicals, JavaScript rendering, cannibalization, internal links, speed, schema. Use when the user asks for a technical audit, a tech SEO check, a site health check, or why a site is not indexed or not cited by AI answers."
 ---
 
 # technical-audit (install placeholder)
