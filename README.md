@@ -44,4 +44,4 @@ We fixed the flaws we found before we added each skill: invented numbers, word-c
 
 ## Who maintains this
 
-[Orchory](https://orchory.com) is an agent that writes the pages ChatGPT, Perplexity and Google quote, in your own design. You approve every page. We use these skills in our own work.
+[Orchory](https://orchory.com) is an agent that writes the pages ChatGPT, Perplexity and Google quote, in your own design. You approve every page.
