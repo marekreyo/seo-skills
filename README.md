@@ -19,6 +19,33 @@ The last two have no license, so we cannot copy them here. This repo ships a sma
 
 ## Install
 
+### Let Claude do it
+
+Paste this into Claude Code:
+
+> Install the SEO skills from github.com/marekreyo/seo-skills for Claude Code, globally. Follow the README of that repo, and do the second step for gsc-analysis and technical-audit too.
+
+Claude runs the commands below, so the installer asks you no questions.
+
+```bash
+npx -y skills add marekreyo/seo-skills -g -a claude-code --skill '*' -y --copy
+```
+
+Then it replaces the 2 placeholders with the real skills:
+
+```bash
+TMP=$(mktemp -d)
+git clone --depth 1 https://github.com/younesbenallal/seo-skills "$TMP/younes"
+cp -R "$TMP/younes/gsc-analysis/." ~/.claude/skills/gsc-analysis/
+cp -R "$TMP/younes/technical-audit/." ~/.claude/skills/technical-audit/
+mkdir -p ~/.claude/skills/docs && cp -R "$TMP/younes/docs/." ~/.claude/skills/docs/
+rm -rf "$TMP"
+```
+
+Restart Claude Code after the install.
+
+### Install by hand
+
 ```bash
 npx skills add marekreyo/seo-skills
 ```
