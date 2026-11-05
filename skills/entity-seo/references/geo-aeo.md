@@ -1,0 +1,117 @@
+# GEO & AEO: AI search and answer engines
+
+**GEO** (Generative Engine Optimization) targets AI-powered search/answer surfaces
+(Perplexity, ChatGPT Search, Google AI Overviews, Gemini) that synthesize answers
+from multiple sources and cite them. **AEO** (Answer Engine Optimization) targets
+featured snippets, People Also Ask, and voice search, mostly through how content is
+written, now that most answer-specific rich results are gone. Both build on the entity
+graph in `references/on-site.md`, do this **after** the JSON-LD entity graph and
+identity block are in place, since GEO/AEO signals depend on Google already
+recognizing `{ENTITY}` as a single, disambiguated entity.
+
+## GEO: make the entity citable by AI engines
+
+**E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness)**
+- About page states real credentials/experience in the entity's own words, not a
+  stock bio.
+- Every article names its author and links to `{DOMAIN}/about` via the JSON-LD
+  `author` → central `@id` (already required in on-site.md's entity graph).
+- Trust signals visible on-site where genuine: testimonials, press mentions,
+  certifications, awards. Never fabricate these.
+- Contact info (email, and phone/address if applicable) is easy to find.
+
+**Content AI engines can cite**
+- Lead each substantive page with the core claim/answer in the **first 1–2
+  sentences**, AI synthesis tools weight the top of the page heavily.
+- Include specific facts, numbers, and first-hand outcomes (a case study with real
+  metrics beats a generic explainer), see the `content` action in `SKILL.md`.
+- Cite external authoritative sources where relevant; original data or a clearly
+  stated point of view is what gets an AI engine to prefer citing this entity over
+  a generic aggregator.
+- Keep the entity's name and role stated consistently near the top of every page, 
+  vague phrasing gives AI engines nothing to anchor the entity to.
+- State relationships in plain, extractable sentences: "Acme Labs was founded by
+  Jane Doe in 2019", "The Checker is made by Acme Labs". AI engines answer "who
+  founded / who makes / who is behind" questions from sentences like these.
+
+**Technical GEO**
+- HTTPS everywhere (baseline trust signal).
+- No JavaScript-only rendering for primary content, AI crawlers, like classic
+  crawlers, need real text in the initial HTML/SSR output.
+- `robots.txt` doesn't block known AI crawlers (e.g. `GPTBot`, `PerplexityBot`,
+  `Google-Extended`) unless the entity has a deliberate reason to opt out.
+
+## Query intent (decide format before writing)
+Match content format to why someone is searching, not just what they typed:
+- **Navigational** ("{ENTITY}"): the exact-name query. The lever here is
+  consolidation and relationships (the entity graph + off-site profiles that
+  confirm them), not new content.
+- **Relationship** ("who founded {COMPANY}", "who makes {PRODUCT}", "{PERSON}
+  {COMPANY}"), answered from entity pages and schema that state the link; each
+  maps to a row in `entities.yaml` and is tracked by `measure`.
+- **Informational** ("who is {ENTITY}", "what does {ENTITY} do"): a direct-answer
+  paragraph or FAQ entry, per the AEO section below.
+- **Commercial investigation** ("best {ROLE} for X", "{ENTITY} vs {COMPETITOR}"): 
+  favors comparison tables and lists; structured markup extracts far more
+  reliably from these than from prose.
+- **Transactional** ("hire {ENTITY}", "book {ENTITY} consulting"): the target
+  page needs one unambiguous next action above the fold (contact form, booking
+  link), an AI engine can cite the entity perfectly and still lose the
+  conversion if the page itself makes the next step unclear.
+
+## AEO: make the entity extractable as a direct answer
+
+**Featured-snippet-ready formatting**
+- Under a question-phrased heading ("What does `{ENTITY}` do?", "How did
+  `{ENTITY}` get into `{TOPIC}`?"), answer in a tight 40–60 word paragraph
+  immediately below, no throat-clearing first.
+- Include a clear "X is..." definition sentence on the about page, the
+  single highest-yield sentence for both snippets and AI summaries.
+- Turn any step-by-step or comparison content into an actual numbered list or
+  table, snippet engines extract structured markup far more reliably than prose.
+
+**Answer markup: what still earns anything (status as of October 2026)**
+The *content* above (question headings, direct answers, lists, tables) is what
+wins snippets, People Also Ask and AI citations. Answer-specific schema mostly
+no longer earns a Google feature. Check this list before recommending a type,
+and re-check Google's structured data docs when it's more than a few months old:
+
+| Type | Status | What to do |
+|---|---|---|
+| `FAQPage` | Google retired FAQ rich results for **all** sites on 2026-05-07 (Search Console reporting removed June 2026, API August 2026) | Don't add it for Google. Existing markup on genuine Q&A is harmless; leave it (other engines and AI crawlers may still read it) but never present it as a ranking or SERP win |
+| `HowTo` | Rich results removed September 2023 | **Never recommend.** Remove it when touching the page; use a visible numbered list instead |
+| `SpeakableSpecification` | Google beta limited to news publishers' articles (US English, Assistant) | Skip unless the entity is a news publisher |
+| `QAPage` | Supported | Only for real user Q&A threads (one question, user answers), not a page of your own FAQs |
+| Entity types (`Person`, `Organization`, `ProfilePage`, `Product`, `SoftwareApplication`, `Service`, `Article`, `BreadcrumbList`, `WebSite`) | Active | These carry the entity graph; this is where markup effort goes |
+
+**Voice search phrasing**
+- Natural, conversational phrasing in headings and direct-answer paragraphs, 
+  write for "how do I..." / "who is..." spoken queries, not keyword fragments.
+- Cover the actual long-tail questions people ask about the entity (check "People
+  also ask" for the name query, and recurring questions from real
+  conversations/interviews) as their own headings.
+- Relationship questions make good genuine Q&A sections on entity pages: "Who
+  built {PRODUCT}?", "What does {COMPANY} make?", but only where people really
+  ask them. The visible question and answer is what counts, not FAQ markup.
+
+## Validate
+- Google Rich Results Test / Schema Markup Validator for the entity JSON-LD.
+  The Rich Results Test no longer reports `FAQPage` or `HowTo`.
+- Read the rendered page as an AI engine would: does the first screen alone answer
+  "who is `{ENTITY}` and what do they do"? If not, that's the highest-leverage GEO
+  fix before anything else here.
+- Search Console → **Enhancements** for the types that still have reports
+  (breadcrumbs, products, profile pages, etc.): fix invalid items immediately
+  (bad schema is worse than none). There is no FAQ or HowTo report any more.
+- There's no free official API for AI-Overview or assistant citations. Treat "does
+  an AI search cite `{ENTITY}`" as a manual, periodic check (ask ChatGPT Search /
+  Perplexity / Gemini the name query yourself), never scrape or automate this.
+
+## Don't
+- Don't recommend deprecated markup (`HowTo`, or `FAQPage` as a Google feature).
+  Check the status table above first.
+- Don't add any schema around content that doesn't genuinely exist on the page.
+  Google and AI engines can tell, and mismatched schema is a trust-eroding
+  contradiction like any other (see guardrails in `SKILL.md`).
+- Don't chase every AEO tactic on every page; prioritize the about page and the
+  entity's 2–3 highest-traffic content pages first.
