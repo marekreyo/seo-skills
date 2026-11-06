@@ -12,10 +12,8 @@ We read about 880 public SEO skills from 40 repos. Most of them were long checkl
 | [refresh-sprint](skills/refresh-sprint) | You refresh pages that already rank. Every heading must come from content the page already has. | RyanCraggs/claude-seo-skills |
 | [link-building](skills/link-building) | You want backlinks. It first checks if links are the real problem. | coreyhaines31/marketingskills |
 | [entity-seo](skills/entity-seo) | Google or AI answers do not connect your name, company and products. | saadsalmankhan/entity-seo-skill |
-| gsc-analysis | You read Search Console data and want the numbers to be right. | [younesbenallal/seo-skills](https://github.com/younesbenallal/seo-skills/tree/main/gsc-analysis) (placeholder, installs on first use) |
-| technical-audit | You want a technical audit that keeps only checks that move rankings. | [younesbenallal/seo-skills](https://github.com/younesbenallal/seo-skills/tree/main/technical-audit) (placeholder, installs on first use) |
-
-The last two have no license, so we cannot copy them here. This repo ships a small placeholder for each that downloads the real skill on first use.
+| [gsc-analysis](skills/gsc-analysis) | You read Search Console data and want the numbers to be right. | younesbenallal/seo-skills |
+| [technical-audit](skills/technical-audit) | You want a technical audit that keeps only checks that move rankings. | younesbenallal/seo-skills |
 
 ## Install
 
@@ -23,23 +21,12 @@ The last two have no license, so we cannot copy them here. This repo ships a sma
 
 Paste this into Claude Code:
 
-> Install the SEO skills from github.com/marekreyo/seo-skills for Claude Code, globally. Follow the README of that repo, and do the second step for gsc-analysis and technical-audit too.
+> Install the SEO skills from github.com/marekreyo/seo-skills for Claude Code, globally. Follow the README of that repo.
 
-Claude runs the commands below, so the installer asks you no questions.
+Claude runs this command, so the installer asks you no questions:
 
 ```bash
 npx -y skills add marekreyo/seo-skills -g -a claude-code --skill '*' -y --copy
-```
-
-Then it replaces the 2 placeholders with the real skills:
-
-```bash
-TMP=$(mktemp -d)
-git clone --depth 1 https://github.com/younesbenallal/seo-skills "$TMP/younes"
-cp -R "$TMP/younes/gsc-analysis/." ~/.claude/skills/gsc-analysis/
-cp -R "$TMP/younes/technical-audit/." ~/.claude/skills/technical-audit/
-mkdir -p ~/.claude/skills/docs && cp -R "$TMP/younes/docs/." ~/.claude/skills/docs/
-rm -rf "$TMP"
 ```
 
 Restart Claude Code after the install, then type `/seo-skills` to see the menu.
@@ -58,20 +45,6 @@ cp -R seo-skills/skills/* ~/.claude/skills/
 ```
 
 Restart Claude Code after you install, then type `/seo-skills` to see the menu.
-
-### The two linked skills install on first use
-
-`gsc-analysis` and `technical-audit` come in as small placeholders. The first time you ask a Search Console or audit question, Claude asks if it may download the real skill from github.com/younesbenallal/seo-skills. Say yes, restart Claude Code, and ask again. The placeholder is replaced by the real skill.
-
-To install them up front instead:
-
-```bash
-git clone --depth 1 https://github.com/younesbenallal/seo-skills younes-seo-skills
-cp -R younes-seo-skills/gsc-analysis younes-seo-skills/technical-audit younes-seo-skills/docs ~/.claude/skills/
-rm -rf younes-seo-skills
-```
-
-The `docs` folder is needed: both skills read a shared file from it.
 
 ## Use them
 
@@ -98,7 +71,7 @@ We fixed the flaws we found before we added each skill: invented numbers, word-c
 - refresh-sprint: [Ryan Craggs](https://github.com/RyanCraggs/claude-seo-skills), Apache-2.0
 - link-building: [Corey Haines](https://github.com/coreyhaines31/marketingskills), MIT
 - entity-seo: [Saad Salman](https://github.com/saadsalmankhan/entity-seo-skill), MIT
-- gsc-analysis, technical-audit: [younesbenallal](https://github.com/younesbenallal/seo-skills)
+- gsc-analysis, technical-audit: [younesbenallal](https://github.com/younesbenallal/seo-skills), no license. We remove them if the author asks.
 
 ## Who maintains this
 
